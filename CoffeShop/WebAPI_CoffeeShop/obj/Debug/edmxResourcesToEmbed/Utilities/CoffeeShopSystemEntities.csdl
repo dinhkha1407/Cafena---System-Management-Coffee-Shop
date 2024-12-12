@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CoffeeShopSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="0" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="saltKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_Account" FromRole="Account" ToRole="Address" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Account" FromRole="Account" ToRole="Cart" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idAccount" Type="Int32" />
+    <Property Name="address1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Address_Account" FromRole="Address" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userCreate" Type="Int32" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="0" />
+    <Property Name="isStatus" Type="Int32" />
+    <NavigationProperty Name="CommentBlogs" Relationship="Self.FK_CommentBlog_Blog" FromRole="Blog" ToRole="CommentBlog" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idAccount" Type="Int32" />
+    <Property Name="idProduct" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Cart_Account" FromRole="Cart" ToRole="Account" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
+    <NavigationProperty Name="InvoiceDetails" Relationship="Self.FK_InvoiceDetails_Cart" FromRole="Cart" ToRole="InvoiceDetails" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="0" />
+    <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Cate" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="CommentBlog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idBlog" Type="Int32" />
+    <Property Name="idAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="comment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="dateCreate" Type="DateTime" Precision="0" />
+    <Property Name="indC" Type="Int32" Nullable="false" />
+    <Property Name="mnC" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="userType" Type="Int32" />
+    <NavigationProperty Name="Blog" Relationship="Self.FK_CommentBlog_Blog" FromRole="CommentBlog" ToRole="Blog" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="discount1" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="dateBegin" Type="DateTime" Precision="0" />
+    <Property Name="dateEnd" Type="DateTime" Precision="0" />
+    <Property Name="idProduct" Type="Int32" />
+    <Property Name="isStatus" Type="Int32" />
+    <Property Name="indC" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Discount_Product" FromRole="Discount" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ForgotPassword">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="timeMils" Type="Int64" />
+    <Property Name="userType" Type="Int32" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="keyResend" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idAccount" Type="Int32" />
+    <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="totalPrice" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="idPayment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="idVoucherS" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="idVoucherA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="isStatus" Type="Int32" />
+    <Property Name="codeInvoice" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="InvoiceAdmins" Relationship="Self.FK_InvoiceAdmin_Invoice" FromRole="Invoice" ToRole="InvoiceAdmin" />
+    <NavigationProperty Name="InvoiceDetails" Relationship="Self.FK_InvoiceDetails_Invoice" FromRole="Invoice" ToRole="InvoiceDetails" />
+    <NavigationProperty Name="InvoiceSuppliers" Relationship="Self.FK_InvoiceSupplier_Invoice" FromRole="Invoice" ToRole="InvoiceSupplier" />
+  </EntityType>
+  <EntityType Name="InvoiceAdmin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="price" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="idInvoice" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="feeService" Type="Decimal" Precision="19" Scale="2" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK_InvoiceAdmin_Invoice" FromRole="InvoiceAdmin" ToRole="Invoice" />
+  </EntityType>
+  <EntityType Name="InvoiceDetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idInvoice" Type="Int32" />
+    <Property Name="idCart" Type="Int32" />
+    <Property Name="isStatus" Type="Int32" />
+    <Property Name="dateSuppC" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Cart" Relationship="Self.FK_InvoiceDetails_Cart" FromRole="InvoiceDetails" ToRole="Cart" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK_InvoiceDetails_Invoice" FromRole="InvoiceDetails" ToRole="Invoice" />
+  </EntityType>
+  <EntityType Name="InvoiceSupplier">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idSupplier" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="idInvoice" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="dateMaxC" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK_InvoiceSupplier_Invoice" FromRole="InvoiceSupplier" ToRole="Invoice" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_InvoiceSupplier_Supplier" FromRole="InvoiceSupplier" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="image1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="image2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="image3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="idSupplier" Type="Int32" />
+    <Property Name="isActive" Type="Int32" />
+    <Property Name="idcate" Type="Int32" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Cate" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Discounts" Relationship="Self.FK_Discount_Product" FromRole="Product" ToRole="Discount" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Product_Supplier" FromRole="Product" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idAccount" Type="Int32" />
+    <Property Name="idProduct" Type="Int32" />
+    <Property Name="review1" Type="Int32" />
+    <Property Name="createDate" Type="DateTime" Precision="0" />
+    <Property Name="invoiceDetail" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="requestDate" Type="DateTime" Precision="0" />
+    <Property Name="createDate" Type="DateTime" Precision="0" />
+    <Property Name="isActive" Type="Int32" />
+    <Property Name="saltKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="InvoiceSuppliers" Relationship="Self.FK_InvoiceSupplier_Supplier" FromRole="Supplier" ToRole="InvoiceSupplier" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Supplier" FromRole="Supplier" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="SupplierRefundV">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idSupplier" Type="Int32" />
+    <Property Name="idInvoice" Type="Int32" />
+    <Property Name="idInvoiceD" Type="Int32" />
+    <Property Name="priceRefund" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserNewEmail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="userType" Type="Int32" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="timeMils" Type="Int64" />
+    <Property Name="keyAccept" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Voucher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="condition" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="discount" Type="Int32" />
+    <Property Name="usercreate" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="startDate" Type="DateTime" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Precision="0" />
+    <Property Name="isActive" Type="Int32" />
+    <Property Name="used" Type="Int32" />
+    <Property Name="idenVou" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="W_RegisterAccount">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="keyVerify" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="timeMils" Type="Int64" />
+  </EntityType>
+  <EntityType Name="W_RegisterSupplier">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="keyVerify" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="timeMils" Type="Int64" />
+  </EntityType>
+  <EntityType Name="W_SHandleInvoice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idInvoice" Type="Int32" />
+    <Property Name="idInvoiceD" Type="Int32" />
+    <Property Name="idSupplier" Type="Int32" />
+    <Property Name="statusCase" Type="Int32" />
+  </EntityType>
+  <EntityType Name="WatchList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idProduct" Type="Int32" />
+    <Property Name="idAccount" Type="Int32" />
+    <Property Name="createDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="saltKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Address_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="idAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="idAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommentBlog_Blog">
+    <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+    <End Role="CommentBlog" Type="Self.CommentBlog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CommentBlog">
+        <PropertyRef Name="idBlog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceDetails_Cart">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="0..1" />
+    <End Role="InvoiceDetails" Type="Self.InvoiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InvoiceDetails">
+        <PropertyRef Name="idCart" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Cate">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="idcate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Discount_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Discount" Type="Self.Discount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Discount">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceAdmin_Invoice">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+    <End Role="InvoiceAdmin" Type="Self.InvoiceAdmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InvoiceAdmin">
+        <PropertyRef Name="idInvoice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceDetails_Invoice">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+    <End Role="InvoiceDetails" Type="Self.InvoiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InvoiceDetails">
+        <PropertyRef Name="idInvoice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceSupplier_Invoice">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+    <End Role="InvoiceSupplier" Type="Self.InvoiceSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InvoiceSupplier">
+        <PropertyRef Name="idInvoice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceSupplier_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="InvoiceSupplier" Type="Self.InvoiceSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InvoiceSupplier">
+        <PropertyRef Name="idSupplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="idSupplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="CommentBlogs" EntityType="Self.CommentBlog" />
+    <EntitySet Name="Discounts" EntityType="Self.Discount" />
+    <EntitySet Name="ForgotPasswords" EntityType="Self.ForgotPassword" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="InvoiceAdmins" EntityType="Self.InvoiceAdmin" />
+    <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetail" />
+    <EntitySet Name="InvoiceSuppliers" EntityType="Self.InvoiceSupplier" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Reviews" EntityType="Self.Review" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="SupplierRefundVs" EntityType="Self.SupplierRefundV" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="UserNewEmails" EntityType="Self.UserNewEmail" />
+    <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
+    <EntitySet Name="W_RegisterAccount" EntityType="Self.W_RegisterAccount" />
+    <EntitySet Name="W_RegisterSupplier" EntityType="Self.W_RegisterSupplier" />
+    <EntitySet Name="W_SHandleInvoice" EntityType="Self.W_SHandleInvoice" />
+    <EntitySet Name="WatchLists" EntityType="Self.WatchList" />
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <AssociationSet Name="FK_Address_Account" Association="Self.FK_Address_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_Account" Association="Self.FK_Cart_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommentBlog_Blog" Association="Self.FK_CommentBlog_Blog">
+      <End Role="Blog" EntitySet="Blogs" />
+      <End Role="CommentBlog" EntitySet="CommentBlogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceDetails_Cart" Association="Self.FK_InvoiceDetails_Cart">
+      <End Role="Cart" EntitySet="Carts" />
+      <End Role="InvoiceDetails" EntitySet="InvoiceDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Cate" Association="Self.FK_Product_Cate">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Discount_Product" Association="Self.FK_Discount_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Discount" EntitySet="Discounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceAdmin_Invoice" Association="Self.FK_InvoiceAdmin_Invoice">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="InvoiceAdmin" EntitySet="InvoiceAdmins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceDetails_Invoice" Association="Self.FK_InvoiceDetails_Invoice">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="InvoiceDetails" EntitySet="InvoiceDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceSupplier_Invoice" Association="Self.FK_InvoiceSupplier_Invoice">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="InvoiceSupplier" EntitySet="InvoiceSuppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceSupplier_Supplier" Association="Self.FK_InvoiceSupplier_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="InvoiceSupplier" EntitySet="InvoiceSuppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Supplier" Association="Self.FK_Product_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <FunctionImport Name="Comment_MaxIndC" ReturnType="Collection(Int32)">
+      <Parameter Name="mnC" Mode="In" Type="Int32" />
+      <Parameter Name="idBlog" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Comment_MnC_Type" ReturnType="Collection(CoffeeShopSystemModel.Comment_MnC_Type_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Comment_SubC_Type" ReturnType="Collection(CoffeeShopSystemModel.Comment_SubC_Type_Result)">
+      <Parameter Name="idBlog" Mode="In" Type="Int32" />
+      <Parameter Name="idMnC" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Comment_MnC_Type_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="idBlog" Nullable="true" />
+    <Property Type="String" Name="idAccount" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="comment" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="dateCreate" Nullable="true" />
+    <Property Type="Int32" Name="indC" Nullable="false" />
+    <Property Type="Int32" Name="mnC" Nullable="true" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="userType" Nullable="true" />
+    <Property Type="Int32" Name="timeSpace" Nullable="true" />
+    <Property Type="String" Name="userName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="statusType" Nullable="true" />
+    <Property Type="String" Name="userAvatar" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Comment_SubC_Type_Result">
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="Int32" Name="idBlog" Nullable="true" />
+    <Property Type="String" Name="idAccount" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="comment" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="dateCreate" Nullable="true" />
+    <Property Type="Int32" Name="indC" Nullable="true" />
+    <Property Type="Int32" Name="mnC" Nullable="true" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="userType" Nullable="true" />
+    <Property Type="Int32" Name="timeSpace" Nullable="true" />
+    <Property Type="String" Name="userName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="userAvatar" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="userReply" Nullable="true" MaxLength="51" />
+  </ComplexType>
+</Schema>

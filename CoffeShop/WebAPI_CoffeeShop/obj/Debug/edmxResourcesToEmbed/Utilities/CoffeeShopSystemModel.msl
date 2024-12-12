@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CoffeeShopSystemModelStoreContainer" CdmEntityContainer="CoffeeShopSystemEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="saltKey" ColumnName="saltKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="address1" ColumnName="address" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Blogs">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Blog">
+        <MappingFragment StoreEntitySet="Blog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userCreate" ColumnName="userCreate" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="isStatus" ColumnName="isStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommentBlogs">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.CommentBlog">
+        <MappingFragment StoreEntitySet="CommentBlog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idBlog" ColumnName="idBlog" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="indC" ColumnName="indC" />
+          <ScalarProperty Name="mnC" ColumnName="mnC" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discounts">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Discount">
+        <MappingFragment StoreEntitySet="Discount">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="discount1" ColumnName="discount" />
+          <ScalarProperty Name="dateBegin" ColumnName="dateBegin" />
+          <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="isStatus" ColumnName="isStatus" />
+          <ScalarProperty Name="indC" ColumnName="indC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ForgotPasswords">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.ForgotPassword">
+        <MappingFragment StoreEntitySet="ForgotPassword">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="timeMils" ColumnName="timeMils" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="keyResend" ColumnName="keyResend" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+          <ScalarProperty Name="idPayment" ColumnName="idPayment" />
+          <ScalarProperty Name="idVoucherS" ColumnName="idVoucherS" />
+          <ScalarProperty Name="idVoucherA" ColumnName="idVoucherA" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="isStatus" ColumnName="isStatus" />
+          <ScalarProperty Name="codeInvoice" ColumnName="codeInvoice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceAdmins">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.InvoiceAdmin">
+        <MappingFragment StoreEntitySet="InvoiceAdmin">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="feeService" ColumnName="feeService" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceDetails">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.InvoiceDetail">
+        <MappingFragment StoreEntitySet="InvoiceDetails">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+          <ScalarProperty Name="idCart" ColumnName="idCart" />
+          <ScalarProperty Name="isStatus" ColumnName="isStatus" />
+          <ScalarProperty Name="dateSuppC" ColumnName="dateSuppC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceSuppliers">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.InvoiceSupplier">
+        <MappingFragment StoreEntitySet="InvoiceSupplier">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idSupplier" ColumnName="idSupplier" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="dateMaxC" ColumnName="dateMaxC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="image1" ColumnName="image1" />
+          <ScalarProperty Name="image2" ColumnName="image2" />
+          <ScalarProperty Name="image3" ColumnName="image3" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="idSupplier" ColumnName="idSupplier" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="idcate" ColumnName="idcate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Review">
+        <MappingFragment StoreEntitySet="Review">
+          <ScalarProperty Name="content1" ColumnName="content" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="review1" ColumnName="review" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="invoiceDetail" ColumnName="invoiceDetail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="saltKey" ColumnName="saltKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierRefundVs">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.SupplierRefundV">
+        <MappingFragment StoreEntitySet="SupplierRefundV">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idSupplier" ColumnName="idSupplier" />
+          <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+          <ScalarProperty Name="idInvoiceD" ColumnName="idInvoiceD" />
+          <ScalarProperty Name="priceRefund" ColumnName="priceRefund" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserNewEmails">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.UserNewEmail">
+        <MappingFragment StoreEntitySet="UserNewEmail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="timeMils" ColumnName="timeMils" />
+          <ScalarProperty Name="keyAccept" ColumnName="keyAccept" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vouchers">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Voucher">
+        <MappingFragment StoreEntitySet="Voucher">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="condition" ColumnName="condition" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="usercreate" ColumnName="usercreate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="used" ColumnName="used" />
+          <ScalarProperty Name="idenVou" ColumnName="idenVou" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="W_RegisterAccount">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.W_RegisterAccount">
+        <MappingFragment StoreEntitySet="W_RegisterAccount">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="keyVerify" ColumnName="keyVerify" />
+          <ScalarProperty Name="timeMils" ColumnName="timeMils" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="W_RegisterSupplier">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.W_RegisterSupplier">
+        <MappingFragment StoreEntitySet="W_RegisterSupplier">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="keyVerify" ColumnName="keyVerify" />
+          <ScalarProperty Name="timeMils" ColumnName="timeMils" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="W_SHandleInvoice">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.W_SHandleInvoice">
+        <MappingFragment StoreEntitySet="W_SHandleInvoice">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+          <ScalarProperty Name="idInvoiceD" ColumnName="idInvoiceD" />
+          <ScalarProperty Name="idSupplier" ColumnName="idSupplier" />
+          <ScalarProperty Name="statusCase" ColumnName="statusCase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WatchLists">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.WatchList">
+        <MappingFragment StoreEntitySet="WatchList">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="CoffeeShopSystemModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="saltKey" ColumnName="saltKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Comment_MaxIndC" FunctionName="CoffeeShopSystemModel.Store.Comment_MaxIndC" />
+    <FunctionImportMapping FunctionImportName="Comment_MnC_Type" FunctionName="CoffeeShopSystemModel.Store.Comment_MnC_Type">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CoffeeShopSystemModel.Comment_MnC_Type_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idBlog" ColumnName="idBlog" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="indC" ColumnName="indC" />
+          <ScalarProperty Name="mnC" ColumnName="mnC" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="timeSpace" ColumnName="timeSpace" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="statusType" ColumnName="statusType" />
+          <ScalarProperty Name="userAvatar" ColumnName="userAvatar" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Comment_SubC_Type" FunctionName="CoffeeShopSystemModel.Store.Comment_SubC_Type">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CoffeeShopSystemModel.Comment_SubC_Type_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idBlog" ColumnName="idBlog" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="indC" ColumnName="indC" />
+          <ScalarProperty Name="mnC" ColumnName="mnC" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="timeSpace" ColumnName="timeSpace" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userAvatar" ColumnName="userAvatar" />
+          <ScalarProperty Name="userReply" ColumnName="userReply" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCommentMain" FunctionName="CoffeeShopSystemModel.Store.GetCommentMain">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CoffeeShopSystemModel.GetCommentMain_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idBlog" ColumnName="idBlog" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="indC" ColumnName="indC" />
+          <ScalarProperty Name="mnC" ColumnName="mnC" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="timeSpace" ColumnName="timeSpace" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCommentSub" FunctionName="CoffeeShopSystemModel.Store.GetCommentSub">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CoffeeShopSystemModel.GetCommentSub_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idBlog" ColumnName="idBlog" />
+          <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="indC" ColumnName="indC" />
+          <ScalarProperty Name="mnC" ColumnName="mnC" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userReply" ColumnName="userReply" />
+          <ScalarProperty Name="timeSpace" ColumnName="timeSpace" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
